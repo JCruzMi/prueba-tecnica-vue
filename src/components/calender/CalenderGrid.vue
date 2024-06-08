@@ -1,47 +1,89 @@
 <template>
-  <div class="calendar-grid">
-    <Button
+  <div class="grid-cols-7 w-full h-full grid gap-1 cursor-default">
+    <CalenderDay
       v-for="day in days"
       :key="day.date"
-      :class="[
-        'size-full hover:bg-secondary w-14 h-14 transition-all flex items-center justify-center text-gray-12 text-sm font-semibold cursor-pointer bg-secondary hover:ring-2 hover:ring-secondary-foreground',
-        { 'bg-primary-foreground ': !day.isAvailable },
-        { 'text-transparent bg-primary-foreground': !day.currentMonth }
-      ]"
-      :disabled="!day.isAvailable || !day.currentMonth"
-    >
-      <p>
-        {{ day.date.getDate() }}
-      </p>
-    </Button>
+      :day="day"
+      @update:month="handleDayClick"
+      :reminderCount="day.reminderCount"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import Button from '../ui/button/Button.vue'
+import { ref, watch } from 'vue'
+import CalenderDay from './CalenderDay.vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useRemindersStore } from '@/stores/reminders'
 
-const generateCalendar = () => {
+const props = defineProps({
+  selectedMonth: {
+    type: Date,
+    required: true
+  }
+})
+const emit = defineEmits(['update:month'])
+const router = useRouter()
+const route = useRoute()
+
+const handleDayClick = (day, date) => {
+  router.push({
+    path: route.path,
+    query: {
+      date: date
+    }
+  })
+  if (!day.currentMonth) {
+    const newMonth = new Date(day.date.getFullYear(), day.date.getMonth(), 1)
+    emit('update:month', newMonth)
+  }
+}
+
+const reminderStore = useRemindersStore()
+
+const generateCalendar = (month) => {
   const today = new Date()
-  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1)
-  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0)
+  const startOfMonth = new Date(month.getFullYear(), month.getMonth(), 1)
+  const endOfMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0)
 
   const startDay = startOfMonth.getDay() // Get day of the week (0-6)
   const daysInMonth = endOfMonth.getDate() // Get total days in the current month
 
   const days = []
+  const reminderCounts = reminderStore.getRemindersCountForMonth(
+    month.getFullYear(),
+    month.getMonth()
+  )
 
   // Add previous month's last days to the start if necessary
   for (let i = startDay; i > 0; i--) {
     const day = new Date(startOfMonth)
     day.setDate(day.getDate() - i)
-    days.push({ date: day, currentMonth: false, isAvailable: day > today })
+    const formattedDate = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(
+      2,
+      '0'
+    )}-${String(day.getDate()).padStart(2, '0')}`
+    days.push({
+      date: day,
+      currentMonth: false,
+      isAvailable: day > today,
+      reminderCount: reminderCounts[formattedDate] || 0
+    })
   }
 
   // Add current month's days
   for (let i = 1; i <= daysInMonth; i++) {
-    const day = new Date(today.getFullYear(), today.getMonth(), i)
-    days.push({ date: day, currentMonth: true, isAvailable: day > today })
+    const day = new Date(month.getFullYear(), month.getMonth(), i)
+    const formattedDate = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(
+      2,
+      '0'
+    )}-${String(day.getDate()).padStart(2, '0')}`
+    days.push({
+      date: day,
+      currentMonth: true,
+      isAvailable: day > today,
+      reminderCount: reminderCounts[formattedDate] || 0
+    })
   }
 
   // Add next month's first days to complete the last week if necessary
@@ -49,19 +91,27 @@ const generateCalendar = () => {
   for (let i = 1; i <= remainingDays; i++) {
     const day = new Date(endOfMonth)
     day.setDate(day.getDate() + i)
-    days.push({ date: day, currentMonth: false, isAvailable: day > today })
+    const formattedDate = `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(
+      2,
+      '0'
+    )}-${String(day.getDate()).padStart(2, '0')}`
+    days.push({
+      date: day,
+      currentMonth: false,
+      isAvailable: day > today,
+      reminderCount: reminderCounts[formattedDate] || 0
+    })
   }
 
   return days
 }
 
-const days = ref(generateCalendar())
-</script>
+const days = ref(generateCalendar(props.selectedMonth))
 
-<style scoped>
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-</style>
+watch(
+  () => props.selectedMonth,
+  (newMonth) => {
+    days.value = generateCalendar(newMonth)
+  }
+)
+</script>
