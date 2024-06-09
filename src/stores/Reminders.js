@@ -52,6 +52,5 @@ export const useRemindersStore = defineStore('reminder', {
 
       return remindersForMonth
     }
-  },
-  persist: true
+  }
 })
