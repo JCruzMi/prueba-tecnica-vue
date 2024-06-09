@@ -21,7 +21,7 @@ import {
     <DialogContent class="sm:max-w-[425px]">
       <DialogHeader>
         <DialogTitle> Recordatorios </DialogTitle>
-        <DialogDescription> Aqui puedes ver todos tus recordatorios. </DialogDescription>
+        <DialogDescription> Aquí puedes ver todos tus recordatorios. </DialogDescription>
       </DialogHeader>
       <ReminderList />
       <DialogFooter>

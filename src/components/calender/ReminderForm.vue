@@ -6,7 +6,14 @@
     </div>
     <div class="flex flex-col gap-1">
       <label for="title" class="form-label" max-length="30" min-length="5">Título</label>
-      <Input id="title" v-model="title" class="form-input" required autocomplete="off" />
+      <Input
+        id="title"
+        v-model="title"
+        class="form-input"
+        required
+        autocomplete="off"
+        placeholder="Título"
+      />
     </div>
     <div class="flex flex-col gap-1">
       <label for="time" class="form-label">Hora</label>

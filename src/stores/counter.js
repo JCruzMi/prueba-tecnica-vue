@@ -29,6 +29,17 @@ export const useRemindersStore = defineStore('counter', () => {
       }
     }
   }
+
+  function deleteRemindersForDay(date) {
+    reminders.reminders = Object.keys(reminders.reminders)
+      .filter((key) => key != date)
+      .reduce((obj, key) => {
+        return {
+          ...obj,
+          [key]: reminders.reminders[key]
+        }
+      }, {})
+  }
   function getRemindersCountForMonth(year, month) {
     const counts = {}
     const daysInMonth = new Date(year, month + 1, 0).getDate()
@@ -61,6 +72,7 @@ export const useRemindersStore = defineStore('counter', () => {
     addReminder,
     getReminders,
     deleteReminder,
+    deleteRemindersForDay,
     getRemindersCountForMonth,
     getRemindersForMonth
   }

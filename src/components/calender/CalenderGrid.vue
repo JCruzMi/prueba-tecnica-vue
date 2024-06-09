@@ -90,8 +90,8 @@ const generateCalendar = (month) => {
     })
   }
 
-  // Add next month's first days to complete the last week if necessary
-  const remainingDays = 42 - days.length // 42 to cover 6 weeks (6 * 7)
+  // Add next months first days to complete the last week if necessary
+  const remainingDays = 42 - days.length // 42 = 7 * 6
   for (let i = 1; i <= remainingDays; i++) {
     const day = new Date(endOfMonth)
     day.setDate(day.getDate() + i)

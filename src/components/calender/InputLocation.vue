@@ -29,7 +29,7 @@ const fetchLocations = async () => {
   const response = await axios.get(
     `http://api.openweathermap.org/geo/1.0/direct?q=${query.value}&limit=2&appid=${
       import.meta.env.VITE_OPENWEATHERMAP_API_KEY
-    }`
+    }&lang=es`
   )
   locations.value = response.data.map((location) => ({
     name: location.name,

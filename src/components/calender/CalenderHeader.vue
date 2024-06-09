@@ -11,5 +11,5 @@
 </template>
 
 <script setup>
-const days = ['Dom', 'Lun', 'Mar', 'MIE', 'JUE', 'VIE', 'SAB']
+const days = ['DOM', 'LUN', 'MAR', 'MIE', 'JUE', 'VIE', 'SAB']
 </script>

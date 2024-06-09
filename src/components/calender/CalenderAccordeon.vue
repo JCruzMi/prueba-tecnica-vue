@@ -25,12 +25,16 @@ async function getWeather(loc) {
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${
         loc.lon
-      }&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`
+      }&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
     )
     weather.value = {
       description: response.data.weather[0].description
     }
   }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 </script>
 
@@ -56,7 +60,9 @@ async function getWeather(loc) {
           <Icon icon="mdi:map-marker" class="w-6 h-6" />
           <div class="flex flex-col">
             <p v-if="item.locationName">{{ item.locationName }}</p>
-            <p v-if="weather">{{ weather.description }}</p>
+            <p v-if="weather" class="">
+              {{ capitalizeFirstLetter(weather.description) }}
+            </p>
             <p v-else>Sin información registrada</p>
           </div>
         </div>

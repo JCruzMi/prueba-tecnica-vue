@@ -15,15 +15,16 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 
 const frameworks = [
+  { value: 'bg-rojo', label: 'Rojo' },
   { value: 'bg-naranja', label: 'Naranja' },
+  { value: 'bg-amarillo', label: 'Amarillo' },
   { value: 'bg-verde', label: 'Verde' },
   { value: 'bg-azul', label: 'Azul' },
-  { value: 'bg-rojo', label: 'Rojo' },
-  { value: 'bg-amarillo', label: 'Amarillo' }
+  { value: 'bg-gris', label: 'Gris' }
 ]
 
 const open = ref(false)
-const value = ref('')
+const value = ref(frameworks[4].value)
 
 const emit = defineEmits(['color-selected'])
 </script>
@@ -51,7 +52,7 @@ const emit = defineEmits(['color-selected'])
     <PopoverContent class="w-full p-0">
       <Command>
         <CommandInput class="h-9" placeholder="Buscar color" />
-        <CommandEmpty>No framework found.</CommandEmpty>
+        <CommandEmpty>Color no encontrado.</CommandEmpty>
         <CommandList>
           <CommandGroup>
             <CommandItem
@@ -68,7 +69,7 @@ const emit = defineEmits(['color-selected'])
                 }
               "
             >
-              <div class="flex flex-row gap-4">
+              <div class="flex flex-row gap-4 items-center">
                 <div class="w-6 h-6 rounded-full" :class="framework.value"></div>
                 {{ framework.label }}
               </div>

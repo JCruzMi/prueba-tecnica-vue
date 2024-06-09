@@ -57,11 +57,11 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))'
         },
         naranja: {
-          DEFAULT: '#F4D03F',
+          DEFAULT: '#FF8D33',
           text: 'hsl(var(--primary))'
         },
         verde: {
-          DEFAULT: '#2ECC71',
+          DEFAULT: '#1ABC9C',
           text: 'hsl(var(--primary))'
         },
         azul: {
@@ -69,11 +69,15 @@ module.exports = {
           text: 'hsl(var(--primary))'
         },
         rojo: {
-          DEFAULT: '#E74C3C',
+          DEFAULT: '#EC7063',
           text: 'hsl(var(--primary))'
         },
         amarillo: {
           DEFAULT: '#F1C40F',
+          text: 'hsl(var(--primary))'
+        },
+        gris: {
+          DEFAULT: '#AAB7B8',
           text: 'hsl(var(--primary))'
         }
       },
