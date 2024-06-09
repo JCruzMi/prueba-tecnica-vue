@@ -15,7 +15,7 @@
 import { ref, watch } from 'vue'
 import CalenderDay from './CalenderDay.vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useRemindersStore } from '@/stores/reminders'
+import { useRemindersStore } from '@/stores/counter'
 
 const props = defineProps({
   selectedMonth: {
