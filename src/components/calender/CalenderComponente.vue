@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col gap-4 p-4 rounded-lg bg-primary-foreground w-full select-none">
-    <CalenderSelectedMonth :currentMonth="selectedMonth" @update:month="updateMonth" />
-    <CalenderHeader />
-    <CalenderGrid :selectedMonth="selectedMonth" @update:month="updateMonth" />
+    <CalendarSelectedMonth :currentMonth="selectedMonth" @update:month="updateMonth" />
+    <CalendarHeaderComponent />
+    <CalendarGridComponent :selectedMonth="selectedMonth" @update:month="updateMonth" />
   </div>
 </template>
 
 <script setup>
-import CalenderGrid from './CalenderGrid.vue'
-import CalenderHeader from './CalenderHeader.vue'
-import CalenderSelectedMonth from './CalenderSelectedMonth.vue'
+import CalendarGridComponent from './CalenderGrid.vue'
+import CalendarHeaderComponent from './CalenderHeader.vue'
+import CalendarSelectedMonth from './CalenderSelectedMonth.vue'
 
 import { provide, ref } from 'vue'
 const selectedMonth = ref(new Date())

@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { Button } from '@/components/ui/button'
 import ReminderForm from './ReminderForm.vue'
 import {
