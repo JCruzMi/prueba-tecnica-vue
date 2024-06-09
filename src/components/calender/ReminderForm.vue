@@ -31,7 +31,7 @@
 
 <script setup>
 import { computed, inject, ref } from 'vue'
-import { useRemindersStore } from '@/stores/reminders.js'
+import { useRemindersStore } from '../../stores/reminders'
 import { Input } from '@/components/ui/input'
 import Button from '../ui/button/Button.vue'
 import { useRoute } from 'vue-router'

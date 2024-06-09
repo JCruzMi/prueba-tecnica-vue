@@ -20,7 +20,7 @@
 
 <script setup>
 import { computed, inject, onUnmounted } from 'vue'
-import { useRemindersStore } from '@/stores/reminders.js'
+import { useRemindersStore } from '../../stores/reminders'
 import DialogReminderForm from './DialogReminderForm.vue'
 import CalenderAccordeon from './CalenderAccordeon.vue'
 import { ScrollArea } from '@/components/ui/scroll-area'
