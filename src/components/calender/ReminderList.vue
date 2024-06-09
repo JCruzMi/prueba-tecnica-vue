@@ -6,18 +6,12 @@
     </div>
 
     <ScrollArea class="max-h-[50dvh] h-full pr-3" v-if="reminders.length">
-      <ul class="flex flex-col gap-4 pb-1">
-        <li
-          v-for="(reminder, index) in reminders"
-          :key="reminder.title"
-          class="border-primary border rounded-md text-sm p-4 flex gap-3 flex-col"
-        >
-          <p>{{ reminder.title }} a las {{ reminder.time }} en {{ reminder.place }}</p>
-          <Button @click="deleteReminder(index)" class="w-fit" variant="destructive"
-            >Eliminar</Button
-          >
-        </li>
-      </ul>
+      <CalenderAccordeon
+        :accordionItems="reminders"
+        :date="route.query.date"
+        @deleteReminder="deleteReminder"
+      >
+      </CalenderAccordeon>
     </ScrollArea>
 
     <p v-else>Aún no hay recordatorios</p>
@@ -28,6 +22,7 @@
 import { computed, inject, onUnmounted } from 'vue'
 import { useRemindersStore } from '@/stores/reminders'
 import DialogReminderForm from './DialogReminderForm.vue'
+import CalenderAccordeon from './CalenderAccordeon.vue'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useRoute, useRouter } from 'vue-router'
 import Button from '../ui/button/Button.vue'

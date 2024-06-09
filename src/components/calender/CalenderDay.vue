@@ -1,29 +1,43 @@
 <template>
   <DialogReminderList>
-    <Button
+    <div
       :class="[
-        'size-full relative hover:bg-secondary w-14 h-14 transition-all flex items-center justify-center text-gray-12 text-sm font-semibold cursor-pointer bg-secondary hover:ring-2 hover:ring-secondary-foreground',
+        'size-full relative px-0 pt-1 overflow-hidden rounded-lg hover:bg-secondary w-full h-28 transition-all flex flex-col items-start justify-start text-gray-12 text-sm font-semibold cursor-pointer bg-secondary hover:ring-2 hover:ring-secondary-foreground',
         { 'bg-secondary/50': !day.isAvailable },
         { 'bg-primary-foreground text-primary/50': !day.currentMonth }
       ]"
       @click="handleDayClick(day, day.date)"
     >
-      <p>
+      <p class="text-center w-full">
         {{ day.date.getDate() }}
       </p>
-      <p
-        v-if="reminderCount != 0"
-        class="absolute text-[10px] top-0 right-0 bg-popover text-primary rounded-sm w-4 h-4 flex items-center justify-center"
-      >
-        {{ reminderCount }}
-      </p>
-    </Button>
+      <ul class="flex flex-col gap-1 pb-1 px-1 relative w-full pt-1">
+        <li
+          v-for="(reminder, index) in reminderCount > 3 ? reminders.slice(0, 3) : reminders"
+          :key="reminder.title + index"
+          class="overflow-hidden"
+        >
+          <p
+            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col text-primary relative w-full text-left whitespace-nowrap"
+            :class="[reminder.color ?? 'bg-azul']"
+            v-if="index < 2"
+          >
+            {{ reminder.title }}
+          </p>
+          <p
+            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col relative bg-primary w-full text-secondary text-left whitespace-nowrap"
+            v-else
+          >
+            {{ reminders.length - index }} más
+          </p>
+        </li>
+      </ul>
+    </div>
   </DialogReminderList>
 </template>
 
 <script setup>
 import DialogReminderList from './DialogReminderList.vue'
-import { Button } from '@/components/ui/button'
 
 defineProps({
   day: {
@@ -32,6 +46,9 @@ defineProps({
   },
   reminderCount: {
     type: Number
+  },
+  reminders: {
+    type: Array
   }
 })
 

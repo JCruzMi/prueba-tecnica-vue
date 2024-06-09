@@ -1,11 +1,15 @@
 <template>
-  <div class="grid grid-cols-7 gap-1">
-    <p class="col-span-1 text-primary text-center" v-for="day in days" :key="day">
+  <div class="grid grid-cols-7 gap-2">
+    <p
+      class="col-span-1 size-full relative w-full h-auto p-2 rounded-sm transition-all flex items-center justify-center text-gray-12 text-sm font-semibold cursor-default bg-transparent"
+      v-for="day in days"
+      :key="day"
+    >
       {{ day }}
     </p>
   </div>
 </template>
 
 <script setup>
-const days = ["Dom", "Lun", "Mar", "MIE", "JUE", "VIE", "SAB"];
+const days = ['Dom', 'Lun', 'Mar', 'MIE', 'JUE', 'VIE', 'SAB']
 </script>

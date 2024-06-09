@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 p-4 rounded-lg bg-primary-foreground">
+  <div class="flex flex-col gap-4 p-4 rounded-lg bg-primary-foreground w-full select-none">
     <CalenderSelectedMonth :currentMonth="selectedMonth" @update:month="updateMonth" />
     <CalenderHeader />
     <CalenderGrid :selectedMonth="selectedMonth" @update:month="updateMonth" />

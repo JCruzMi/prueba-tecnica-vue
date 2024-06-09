@@ -6,6 +6,7 @@
       :day="day"
       @update:month="handleDayClick"
       :reminderCount="day.reminderCount"
+      :reminders="day.reminders"
     />
   </div>
 </template>
@@ -55,6 +56,8 @@ const generateCalendar = (month) => {
     month.getMonth()
   )
 
+  const reminders = reminderStore.getRemindersForMonth(month.getFullYear(), month.getMonth())
+
   // Add previous month's last days to the start if necessary
   for (let i = startDay; i > 0; i--) {
     const day = new Date(startOfMonth)
@@ -82,7 +85,8 @@ const generateCalendar = (month) => {
       date: day,
       currentMonth: true,
       isAvailable: day > today,
-      reminderCount: reminderCounts[formattedDate] || 0
+      reminderCount: reminderCounts[formattedDate] || 0,
+      reminders: reminders[formattedDate] || []
     })
   }
 
@@ -99,7 +103,8 @@ const generateCalendar = (month) => {
       date: day,
       currentMonth: false,
       isAvailable: day > today,
-      reminderCount: reminderCounts[formattedDate] || 0
+      reminderCount: reminderCounts[formattedDate] || 0,
+      reminders: reminders[formattedDate] || []
     })
   }
 
