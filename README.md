@@ -1,6 +1,6 @@
 # Front-end Javascript Challenge
 
-![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/slab.png?raw=true)
+![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/blob/main/public/slab.png)
 
 ## Description
 
