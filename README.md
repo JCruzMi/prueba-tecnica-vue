@@ -1,6 +1,6 @@
 # Front-end Javascript Challenge
 
-![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/blob/main/public/slab.png)
+![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/slab.png)
 
 ## Description
 
@@ -58,7 +58,11 @@ npm run test:e2e:dev
 
 # Front-end Javascript Challenge
 
-![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/slab.png)
+# ![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/slab.png)
+
+![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/blob/main/public/slab.png?raw=true)
+
+> > > > > > > 3e4c669ca6d8c963f12f72043f24143009772ba9
 
 ## Description
 
@@ -81,8 +85,8 @@ This is a repository with the technical test to enter slabcode in the vue progra
 
 ## .env
 
-VITE_OPENWEATHERMAP_API_KEY= //FREE API KEY
-VITE_OPENWEATHERMAP_API_KEY_PAID= //PAID API KEY TO GET EXACTLY DAYS STATUS
+- VITE_OPENWEATHERMAP_API_KEY= //FREE API KEY
+- VITE_OPENWEATHERMAP_API_KEY_PAID= //PAID API KEY TO GET EXACTLY DAYS STATUS
 
 ## Installation
 
