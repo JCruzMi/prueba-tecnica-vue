@@ -23,7 +23,8 @@ This is a repository with the technical test to enter slabcode in the vue progra
 
 ## .env
 
-VITE_OPENWEATHERMAP_API_KEY=
+VITE_OPENWEATHERMAP_API_KEY= //FREE API KEY
+VITE_OPENWEATHERMAP_API_KEY_PAID= //PAID API KEY TO GET EXACTLY DAYS STATUS
 
 ## Installation
 
