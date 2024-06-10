@@ -4,7 +4,7 @@
       :class="[
         'size-full relative px-0 pt-1 overflow-hidden rounded-lg hover:bg-secondary w-full h-28 transition-all flex flex-col items-start justify-start text-gray-12 text-sm font-semibold cursor-pointer bg-secondary hover:ring-2 hover:ring-secondary-foreground',
         { 'bg-secondary/50': !day.isAvailable },
-        { 'bg-primary-foreground text-primary/50': !day.currentMonth }
+        { 'bg-secondary/40 text-primary/50': !day.currentMonth }
       ]"
       @click="handleDayClick(day, day.date)"
     >
@@ -18,14 +18,14 @@
           class="overflow-hidden"
         >
           <p
-            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col text-primary relative w-full text-left whitespace-nowrap"
+            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col text-white relative w-full text-left whitespace-nowrap"
             :class="[reminder.color ?? 'bg-azul']"
             v-if="index < 2"
           >
             {{ reminder.title }}
           </p>
           <p
-            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col relative bg-primary w-full text-secondary text-left whitespace-nowrap"
+            class="font-bold rounded-sm text-xs p-1 flex gap-1 flex-col relative bg-white w-full text-black text-left whitespace-nowrap"
             v-else
           >
             {{ reminders.length - index }} más

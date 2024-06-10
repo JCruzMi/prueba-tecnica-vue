@@ -2,10 +2,10 @@
   <div class="flex w-full justify-between">
     <div class="flex flex-row gap-4 w-full justify-start items-center">
       <Button @click="previousMonth" variant="outline" class="px-2">
-        <Icon icon="mdi:chevron-left" class="w-6 h-6" />
+        <Icon icon="mdi:chevron-left" class="w-6 h-6 text-primary" />
       </Button>
       <Button @click="nextMonth" variant="outline" class="px-2">
-        <Icon icon="mdi:chevron-right" class="w-6 h-6" />
+        <Icon icon="mdi:chevron-right" class="w-6 h-6 text-primary" />
       </Button>
       <span class="text-xl">{{ formattedMonth }}</span>
     </div>

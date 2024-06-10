@@ -22,11 +22,23 @@ const weather = ref(null)
 async function getWeather(loc) {
   weather.value = null
   if (loc) {
+    // let dateTimeStr = `${props.date}T${time}Z`
+
+    // // Crear un objeto Date
+    // let dateObj = new Date(dateTimeStr)
+
+    // // Convertir el objeto Date a un timestamp UNIX
+    // let timestamp = Math.floor(dateObj.getTime() / 1000)
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${
         loc.lon
       }&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
     )
+    // const response = await axios.get(
+    //   `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${loc.lat}&lon=${
+    //     loc.lon
+    //   }&dt=${timestamp}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
+    // )
     weather.value = {
       description: response.data.weather[0].description
     }

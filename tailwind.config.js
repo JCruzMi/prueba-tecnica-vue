@@ -58,27 +58,27 @@ module.exports = {
         },
         naranja: {
           DEFAULT: '#FF8D33',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         },
         verde: {
           DEFAULT: '#1ABC9C',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         },
         azul: {
           DEFAULT: '#3498DB',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         },
         rojo: {
           DEFAULT: '#EC7063',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         },
         amarillo: {
           DEFAULT: '#F1C40F',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         },
         gris: {
           DEFAULT: '#AAB7B8',
-          text: 'hsl(var(--primary))'
+          text: '#fff'
         }
       },
       borderRadius: {
