@@ -1,6 +1,6 @@
 # Front-end Javascript Challenge
 
-![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/portfolio/salb.png?raw=true)
+![img_prueba](https://github.com/JCruzMi/prueba-tecnica-vue/tree/main/public/slab.png?raw=true)
 
 ## Description
 
@@ -20,6 +20,10 @@ This is a repository with the technical test to enter slabcode in the vue progra
 - ✅ Expand the calender to support more than the current mont.
 - ✅ Properly handle overflow when multiple reminders appear on the same date.
 - ✅Functionality to delete one or ALL reminders for specific day.
+
+## .env
+
+VITE_OPENWEATHERMAP_API_KEY=
 
 ## Installation
 

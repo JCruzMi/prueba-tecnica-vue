@@ -10,7 +10,7 @@ import {
 import axios from 'axios'
 import { inject, ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   accordionItems: {
     type: Array,
     required: true
@@ -19,26 +19,31 @@ defineProps({
 })
 const weather = ref(null)
 
-async function getWeather(loc) {
+async function getWeather(loc, time) {
   weather.value = null
   if (loc) {
-    // let dateTimeStr = `${props.date}T${time}Z`
+    let dateTimeStr = `${props.date}T${time}Z`
 
-    // // Crear un objeto Date
-    // let dateObj = new Date(dateTimeStr)
+    // Crear un objeto Date
+    let dateObj = new Date(dateTimeStr)
 
-    // // Convertir el objeto Date a un timestamp UNIX
-    // let timestamp = Math.floor(dateObj.getTime() / 1000)
-    const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${
-        loc.lon
-      }&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
-    )
-    // const response = await axios.get(
-    //   `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${loc.lat}&lon=${
-    //     loc.lon
-    //   }&dt=${timestamp}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
-    // )
+    // Convertir el objeto Date a un timestamp UNIX
+    let timestamp = Math.floor(dateObj.getTime() / 1000)
+    let response
+    if (import.meta.env.VITE_OPENWEATHERMAP_API_KEY_PAID) {
+      response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/onecall/timemachine?lat=${loc.lat}&lon=${
+          loc.lon
+        }&dt=${timestamp}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY_PAID}&lang=es`
+      )
+    } else {
+      response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${loc.lat}&lon=${
+          loc.lon
+        }&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}&lang=es`
+      )
+    }
+
     weather.value = {
       description: response.data.weather[0].description
     }
@@ -59,7 +64,7 @@ function capitalizeFirstLetter(string) {
       :key="item.title + index"
       :value="item.title + index"
     >
-      <AccordionTrigger class="hover:no-underline" @click="getWeather(item?.location)">{{
+      <AccordionTrigger class="hover:no-underline" @click="getWeather(item?.location, item.time)">{{
         item.title
       }}</AccordionTrigger>
       <AccordionContent class="flex flex-col gap-4 items-center w-full">
