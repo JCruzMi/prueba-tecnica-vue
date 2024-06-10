@@ -1,12 +1,15 @@
 <template>
-  <div class="flex flex-row gap-4 w-full justify-start items-center">
-    <Button @click="previousMonth" variant="outline" class="px-2">
-      <Icon icon="mdi:chevron-left" class="w-6 h-6" />
-    </Button>
-    <Button @click="nextMonth" variant="outline" class="px-2">
-      <Icon icon="mdi:chevron-right" class="w-6 h-6" />
-    </Button>
-    <span class="text-xl">{{ formattedMonth }}</span>
+  <div class="flex w-full justify-between">
+    <div class="flex flex-row gap-4 w-full justify-start items-center">
+      <Button @click="previousMonth" variant="outline" class="px-2">
+        <Icon icon="mdi:chevron-left" class="w-6 h-6" />
+      </Button>
+      <Button @click="nextMonth" variant="outline" class="px-2">
+        <Icon icon="mdi:chevron-right" class="w-6 h-6" />
+      </Button>
+      <span class="text-xl">{{ formattedMonth }}</span>
+    </div>
+    <ThemeProvider />
   </div>
 </template>
 
@@ -14,6 +17,7 @@
 import { ref, computed, watch } from 'vue'
 import Button from '../ui/button/Button.vue'
 import { Icon } from '@iconify/vue'
+import ThemeProvider from '@/components/layouts/ThemeProvider.vue'
 
 const props = defineProps({
   currentMonth: {
