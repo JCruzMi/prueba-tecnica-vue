@@ -25,7 +25,7 @@
           :disabled="!deleteInput"
           variant="destructive"
           @click="store.deleteRemindersForDay(route.query.date)"
-          >Eliminar Todos</Button
+          >Eliminar todos</Button
         >
       </div>
     </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { computed, inject, onUnmounted, ref } from 'vue'
+import { computed, inject, onUnmounted, provide, ref } from 'vue'
 import { useRemindersStore } from '@/stores/counter'
 import DialogReminderForm from './DialogReminderForm.vue'
 import CalenderAccordeon from './CalenderAccordeon.vue'
@@ -49,10 +49,28 @@ const store = useRemindersStore()
 const reminders = computed(() => store.getReminders(route.query.date))
 const refDeleteInput = ref(null)
 const deleteInput = computed(() => refDeleteInput.value === 'Eliminar')
+const openEdit = ref('')
 
 const deleteReminder = (index) => {
   store.deleteReminder(route.query.date, index)
 }
+
+const editReminder = (index) => {
+  store.editReminder(route.query.date, index)
+}
+
+const openEditFunction = (id) => {
+  openEdit.value = id.toString()
+}
+
+const closeEditFunction = () => {
+  openEdit.value = ''
+}
+
+provide('openEditFunction', openEditFunction)
+provide('closeEditFunction', closeEditFunction)
+provide('editReminder', editReminder)
+provide('openEdit', openEdit)
 
 onUnmounted(() => {
   router.push(route.path)

@@ -23,8 +23,15 @@ const frameworks = [
   { value: 'bg-gris', label: 'Gris' }
 ]
 
+const props = defineProps({
+  colorDefault: {
+    type: String,
+    default: 'bg-azul'
+  }
+})
+
 const open = ref(false)
-const value = ref(frameworks[4].value)
+const value = ref(props.colorDefault)
 
 const emit = defineEmits(['color-selected'])
 </script>

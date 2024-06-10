@@ -17,7 +17,14 @@ import { ref } from 'vue'
 import axios from 'axios'
 import Button from '../ui/button/Button.vue'
 
-const query = ref('')
+const props = defineProps({
+  locationDefault: {
+    type: String,
+    default: ''
+  }
+})
+
+const query = ref(props.locationDefault)
 const locations = ref([])
 const emit = defineEmits(['location-selected'])
 

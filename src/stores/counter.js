@@ -18,6 +18,10 @@ export const useRemindersStore = defineStore('counter', () => {
     return reminders.reminders[date].slice().sort((a, b) => a.time.localeCompare(b.time))
   }
 
+  function getReminder(date, index) {
+    return reminders.reminders[date][index]
+  }
+
   function deleteReminder(date, reminderIndex) {
     if (reminders.reminders[date]) {
       reminders.reminders[date].slice().sort((a, b) => a.time.localeCompare(b.time))
@@ -67,13 +71,20 @@ export const useRemindersStore = defineStore('counter', () => {
     return remindersForMonth
   }
 
+  function editReminder(prevDate, newDate, reminder, index) {
+    addReminder(newDate, reminder)
+    deleteReminder(prevDate, index)
+  }
+
   return {
     reminders,
     addReminder,
+    getReminder,
     getReminders,
     deleteReminder,
     deleteRemindersForDay,
     getRemindersCountForMonth,
-    getRemindersForMonth
+    getRemindersForMonth,
+    editReminder
   }
 })

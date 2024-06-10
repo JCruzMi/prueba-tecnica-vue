@@ -10,29 +10,39 @@ import {
   DialogFooter,
   DialogClose
 } from '@/components/ui/dialog'
-import { provide, ref } from 'vue'
+import { inject, provide, ref } from 'vue'
 
 const open = ref(false)
+const openEdit = inject('openEdit')
+const closeEditFunction = inject('closeEditFunction')
 
 const close = () => {
   open.value = false
+  closeEditFunction()
 }
 
 provide('close', close)
+provide('editIndex', openEdit)
 </script>
 
 <template>
-  <Dialog :open="open">
+  <Dialog :open="open || openEdit != ''">
     <Button @click="open = true" class="w-full"> Nuevo recordatorio </Button>
     <DialogContent class="sm:max-w-[425px]">
       <DialogHeader>
-        <DialogTitle> Agregar recordatorio </DialogTitle>
-        <DialogDescription> Ingresa los datos del nuevo recordatorio. </DialogDescription>
+        <DialogTitle>
+          {{ openEdit != '' ? 'Editar recordatorio' : 'Nuevo recordatorio' }}
+        </DialogTitle>
+        <DialogDescription>
+          {{ openEdit != '' ? 'Edita el recordatorio.' : 'Crea un nuevo recordatorio.' }}
+        </DialogDescription>
       </DialogHeader>
       <ReminderForm />
       <DialogFooter>
         <DialogClose class="w-full">
-          <Button class="w-full" variant="outline" @click="open = false"> Cerrar </Button>
+          <Button class="w-full" variant="outline" @click="close">
+            {{ openEdit != '' ? 'Cancelar' : 'Cerrar' }}
+          </Button>
         </DialogClose>
       </DialogFooter>
     </DialogContent>

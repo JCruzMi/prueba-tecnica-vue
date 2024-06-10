@@ -8,7 +8,7 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import axios from 'axios'
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 
 defineProps({
   accordionItems: {
@@ -32,6 +32,8 @@ async function getWeather(loc) {
     }
   }
 }
+
+const openEditFunction = inject('openEditFunction')
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -67,7 +69,7 @@ function capitalizeFirstLetter(string) {
           </div>
         </div>
         <div class="flex flex-row gap-4 items-center w-full">
-          <Button class="w-full">Editar</Button>
+          <Button class="w-full" @click="openEditFunction(index)">Editar</Button>
           <Button
             class="w-full hover:bg-destructive transition-colors hover:text-secondary dark:hover:text-primary"
             variant="outline"
